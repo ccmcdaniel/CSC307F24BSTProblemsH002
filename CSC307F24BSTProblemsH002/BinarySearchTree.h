@@ -1,5 +1,8 @@
 #pragma once
 #include "TreeNode.h"
+#include <iostream>
+
+using std::cout;
 
 class BinarySearchTree
 {
@@ -23,6 +26,14 @@ public:
 		{
 			return Insert(data, root);
 		}
+	}
+
+	void PrintTreePre()
+	{
+		if (root == nullptr)
+			return;
+		else
+			PrintTreePre(root);
 	}
 
 
@@ -78,6 +89,18 @@ private:
 			}
 
 		}
+	}
+
+	void PrintTreePre(TreeNode* node)
+	{
+		if (node == nullptr)
+			return;
+
+		cout << node->data << ", ";
+		PrintTreePre(node->leftChild);
+		//cout << node->data << ", "; //in order location
+		PrintTreePre(node->rightChild);
+		//cout << node->data << ", "; //post order location
 	}
 
 };
