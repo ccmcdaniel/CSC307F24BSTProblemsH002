@@ -38,6 +38,14 @@ public:
 		}
 	}
 
+	bool Delete(int data)
+	{
+		if (root == nullptr)
+			return false;
+		else
+			return DeleteSearch(data, root);
+	}
+
 	void PrintTreePre()
 	{
 		if (root == nullptr)
@@ -119,6 +127,61 @@ private:
 			{
 				//look at right side.
 				return Search(data, node->rightChild);
+			}
+		}
+	}
+
+	bool DeleteSearch(int data, TreeNode* node)
+	{
+		if (node == nullptr)
+			return false;
+
+		else
+		{
+			if (node->data == data)
+			{
+				//delete node
+				DeleteNode(node);
+				count--;
+				return true;
+			}
+			if (node->data > data)
+			{
+				//look at left side.
+				return DeleteSearch(data, node->leftChild);
+			}
+			else
+			{
+				//look at right side.
+				return DeleteSearch(data, node->rightChild);
+			}
+		}
+	}
+
+	void DeleteNode(TreeNode* node)
+	{
+		//Type 1 Deletion, node has NO children
+		if (node->leftChild == nullptr && node->rightChild == nullptr)
+		{
+			//is this the root?
+			if (node == root)
+			{
+				//perform a root deletion;
+				root = nullptr;
+				delete node;
+				return;
+			}
+			else
+			{
+				//node has parent
+				//is this node on the left side of its parent?
+				if (node->parent->leftChild == node)
+					node->parent->leftChild == nullptr;
+				else
+					node->parent->rightChild = nullptr;
+
+				delete node;
+				return;
 			}
 		}
 	}
