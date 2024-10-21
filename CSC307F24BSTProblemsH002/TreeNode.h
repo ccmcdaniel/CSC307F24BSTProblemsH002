@@ -4,7 +4,7 @@ class TreeNode
 {
 public:
 	int data;
-	TreeNode* leftChild;
-	TreeNode* rightChild;
-	TreeNode* parent;
+	TreeNode* leftChild = nullptr;
+	TreeNode* rightChild = nullptr;
+	TreeNode* parent = nullptr;
 };
