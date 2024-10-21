@@ -1,4 +1,5 @@
 #include "BinarySearchTree.h"
+using std::cin;
 
 int main()
 {
@@ -13,4 +14,18 @@ int main()
 
 	my_bst.PrintTreePre();
 	cout << "\n";
+
+	while (true)
+	{
+		int value;
+		cout << "Enter a value to lookup: ";
+		cin >> value;
+
+		
+		if (my_bst.Search(value) == true)
+			cout << "The value \"" << value << "\" is in the BST tree.";
+		else
+			cout << "The value \"" << value << "\" is NOT in the BST tree.";
+		cout << "\n";
+	}
 }

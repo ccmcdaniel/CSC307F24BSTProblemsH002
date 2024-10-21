@@ -28,6 +28,16 @@ public:
 		}
 	}
 
+	bool Search(int data)
+	{
+		if (root == nullptr)
+			return false;
+		else
+		{
+			return Search(data, root);
+		}
+	}
+
 	void PrintTreePre()
 	{
 		if (root == nullptr)
@@ -88,6 +98,28 @@ private:
 				}
 			}
 
+		}
+	}
+
+	bool Search(int data, TreeNode* node)
+	{
+		if (node == nullptr)
+			return false;
+
+		else
+		{
+			if (node->data == data)
+				return true;
+			if (node->data > data)
+			{
+				//look at left side.
+				return Search(data, node->leftChild);
+			}
+			else
+			{
+				//look at right side.
+				return Search(data, node->rightChild);
+			}
 		}
 	}
 
