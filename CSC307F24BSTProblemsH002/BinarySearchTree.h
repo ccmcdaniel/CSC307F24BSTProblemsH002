@@ -31,7 +31,53 @@ private:
 
 	bool Insert(int data, TreeNode* node)
 	{
+		if (node->data == data)
+			return false;
+		else
+		{
+			if (node->data > data)
+			{
+				//look at left child 
+				if (node->leftChild == nullptr)
+				{
+					//insert as the left child
+					TreeNode* new_node = new TreeNode;
+					
+					new_node->data = data;
+					new_node->parent = node;
+					new_node->parent->leftChild = new_node;
+					count++;
+					return true;
+				}
+				else
+				{
+					//continue looking 
+					return Insert(data, node->leftChild);
+				}
+			}
+			else
+			{
+				//Look at right child
+				//look at left child 
+				if (node->rightChild == nullptr)
+				{
+					//insert as the left child
+					TreeNode* new_node = new TreeNode;
 
+					new_node->data = data;
+					new_node->parent = node;
+					new_node->parent->rightChild = new_node;
+					count++;
+					return true;
+				}
+				else
+				{
+					//continue looking 
+					return Insert(data, node->rightChild);
+				}
+			}
+
+		}
 	}
 
 };
