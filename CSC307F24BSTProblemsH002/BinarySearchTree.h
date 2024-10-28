@@ -184,6 +184,34 @@ private:
 				return;
 			}
 		}
+		//Determine if its a type-2 deletion, left child ONLY
+		else if (node->leftChild != nullptr && node->rightChild == nullptr)
+		{
+			if (node == root)
+				root = node->leftChild;
+			else if (node->parent->leftChild == node)
+				node->parent->leftChild == node->leftChild;
+			else //otherwise, its connected to its parents right.
+				node->parent->rightChild = node->leftChild;
+
+			delete node;
+			return;
+		}
+
+		//Determine if its a type-2 deletion, right child ONLY
+		else if (node->leftChild == nullptr && node->rightChild != nullptr)
+		{
+
+			if (node == root)
+				root = node->rightChild;
+			else if (node->parent->leftChild == node)
+				node->parent->leftChild == node->rightChild;
+			else //otherwise, its connected to its parents right.
+				node->parent->rightChild = node->rightChild;
+
+			delete node;
+			return;
+		}
 	}
 
 	void PrintTreePre(TreeNode* node)
