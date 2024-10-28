@@ -176,7 +176,9 @@ private:
 				//node has parent
 				//is this node on the left side of its parent?
 				if (node->parent->leftChild == node)
-					node->parent->leftChild == nullptr;
+				{
+					node->parent->leftChild = nullptr;
+				}
 				else
 					node->parent->rightChild = nullptr;
 
@@ -188,11 +190,22 @@ private:
 		else if (node->leftChild != nullptr && node->rightChild == nullptr)
 		{
 			if (node == root)
+			{
 				root = node->leftChild;
+				root->parent = nullptr;
+			}
 			else if (node->parent->leftChild == node)
-				node->parent->leftChild == node->leftChild;
+
+			{
+				node->parent->leftChild = node->leftChild;
+				//update the parent of the nodes left child to retain the connection to the tree.
+				node->leftChild->parent = node->parent;
+			}
 			else //otherwise, its connected to its parents right.
+			{
 				node->parent->rightChild = node->leftChild;
+				node->leftChild->parent = node->parent;
+			}
 
 			delete node;
 			return;
@@ -203,11 +216,20 @@ private:
 		{
 
 			if (node == root)
+			{
 				root = node->rightChild;
+				root->parent = nullptr;
+			}
 			else if (node->parent->leftChild == node)
-				node->parent->leftChild == node->rightChild;
+			{
+				node->parent->leftChild = node->rightChild;
+				node->rightChild->parent = node->parent;
+			}
 			else //otherwise, its connected to its parents right.
+			{
 				node->parent->rightChild = node->rightChild;
+				node->rightChild->parent = node->parent;
+			}
 
 			delete node;
 			return;
