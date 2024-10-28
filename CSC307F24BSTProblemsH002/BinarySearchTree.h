@@ -212,6 +212,25 @@ private:
 			delete node;
 			return;
 		}
+		else //type 3 deletion, where node has two children.
+		{
+			TreeNode* temp = node->rightChild;
+
+			//Traverse to the left-most child in the
+			//right subtree, where temp is the left most child.
+			while (temp->leftChild != nullptr)
+				temp = temp->leftChild;
+
+			//overwrite the target nodes data with
+			//temps data.
+			node->data = temp->data;
+
+			//Perform a deletion on temp.
+			DeleteNode(temp);
+
+			return;
+
+		}
 	}
 
 	void PrintTreePre(TreeNode* node)
