@@ -37,8 +37,6 @@ int main()
 	my_bst.SaveToFile("my_tree.txt");
 	my_bst.LoadFromFile("my_tree.txt");
 
-	my_bst2.SaveToFile("my_second_tree.txt");
-
 	cout << "Tree After Save: ";
 	my_bst.PrintTreePre();
 	cout << "\n";
