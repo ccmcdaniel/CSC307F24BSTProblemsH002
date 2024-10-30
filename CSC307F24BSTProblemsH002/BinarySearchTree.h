@@ -1,8 +1,13 @@
 #pragma once
 #include "TreeNode.h"
+#include <string>
 #include <iostream>
+#include <fstream>
 
 using std::cout;
+using std::string;
+using std::ifstream;
+using std::ofstream;
 
 class BinarySearchTree
 {
@@ -52,6 +57,14 @@ public:
 			return;
 		else
 			PrintTreePre(root);
+	}
+
+	void SaveToFile(string filepath)
+	{
+		ofstream file;
+		file.open(filepath);
+		SaveToFile(file, root);
+		file.close();
 	}
 
 
@@ -267,4 +280,16 @@ private:
 		//cout << node->data << ", "; //post order location
 	}
 
+	void SaveToFile(ofstream& file, TreeNode* node)
+	{
+		if (node == nullptr)
+			return;
+
+		else
+		{
+			file << node->data << "\n";
+			SaveToFile(file, node->leftChild);
+			SaveToFile(file, node->rightChild);
+		}
+	}
 };

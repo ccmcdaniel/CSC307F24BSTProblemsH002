@@ -33,6 +33,8 @@ int main()
 		//cout << "\n";
 	//}
 
+	my_bst.SaveToFile("my_tree.txt");
+
 	//Type 1 Deletion (leaf node)
 	my_bst.Delete(30);
 	my_bst.PrintTreePre();
