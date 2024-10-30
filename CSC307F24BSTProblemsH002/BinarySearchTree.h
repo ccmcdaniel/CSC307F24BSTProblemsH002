@@ -3,11 +3,14 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using std::cout;
 using std::string;
 using std::ifstream;
 using std::ofstream;
+using std::vector;
+using std::stoi;
 
 class BinarySearchTree
 {
@@ -65,6 +68,47 @@ public:
 		file.open(filepath);
 		SaveToFile(file, root);
 		file.close();
+	}
+
+	string LoadFromFile(string filepath, bool append = false)
+	{
+		try 
+		{
+			ifstream file;
+			file.open(filepath);
+			
+			//read the tree into the file.
+			vector<int> read_data;
+
+			string fileline;
+			while (getline(file, fileline))
+			{
+				int data = stoi(fileline);
+				read_data.push_back(data);
+			}
+
+			//Empty the tree before insertion
+			if(append == false)
+				ClearTree();
+
+			//Insert the vector of tree values into the tree.
+			for (int i = 0; i < read_data.size(); i++)
+				Insert(read_data[i]);
+
+
+			file.close();
+			
+			return "";
+		}
+		catch (int e)
+		{
+			return "Error while attempting to access the file.";
+		}
+	}
+
+	void ClearTree()
+	{
+		ClearTree(root);
 	}
 
 
@@ -290,6 +334,20 @@ private:
 			file << node->data << "\n";
 			SaveToFile(file, node->leftChild);
 			SaveToFile(file, node->rightChild);
+		}
+	}
+
+	void ClearTree(TreeNode* node)
+	{
+		if (node == nullptr)
+			return;
+		else
+		{
+			ClearTree(node->leftChild);
+			ClearTree(node->rightChild);
+
+			//delete the node after visiting children
+			DeleteNode(node);
 		}
 	}
 };

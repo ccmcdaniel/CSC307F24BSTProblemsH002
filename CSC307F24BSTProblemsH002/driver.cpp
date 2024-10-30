@@ -16,6 +16,7 @@ int main()
 	my_bst.Insert(98);
 	my_bst.Insert(97);
 
+	cout << "Tree Before Save: ";
 	my_bst.PrintTreePre();
 	cout << "\n";
 
@@ -34,29 +35,37 @@ int main()
 	//}
 
 	my_bst.SaveToFile("my_tree.txt");
+	my_bst.LoadFromFile("my_tree.txt");
 
-	//Type 1 Deletion (leaf node)
-	my_bst.Delete(30);
+	my_bst2.SaveToFile("my_second_tree.txt");
+
+	cout << "Tree After Save: ";
 	my_bst.PrintTreePre();
 	cout << "\n";
 
-	//Type 2 Deletion (Right Child Only)
-	my_bst.Delete(12);
-	my_bst.PrintTreePre();
-	cout << "\n";
 
-	//Type 2 Deletion (Left Child Only)
-	my_bst.Delete(77);
-	my_bst.PrintTreePre();
-	cout << "\n";
+	////Type 1 Deletion (leaf node)
+	//my_bst.Delete(30);
+	//my_bst.PrintTreePre();
+	//cout << "\n";
 
-	//Type 3 Deletion (not root)
-	my_bst.Delete(96);
-	my_bst.PrintTreePre();
-	cout << "\n";
+	////Type 2 Deletion (Right Child Only)
+	//my_bst.Delete(12);
+	//my_bst.PrintTreePre();
+	//cout << "\n";
 
-	//Type 3 Deletion (root)
-	my_bst.Delete(48);
-	my_bst.PrintTreePre();
-	cout << "\n";
+	////Type 2 Deletion (Left Child Only)
+	//my_bst.Delete(77);
+	//my_bst.PrintTreePre();
+	//cout << "\n";
+
+	////Type 3 Deletion (not root)
+	//my_bst.Delete(96);
+	//my_bst.PrintTreePre();
+	//cout << "\n";
+
+	////Type 3 Deletion (root)
+	//my_bst.Delete(48);
+	//my_bst.PrintTreePre();
+	//cout << "\n";
 }
